@@ -62,7 +62,7 @@ input[type="submit"] {
         URL Shortener
     </div>
     <div class="main">
-        <input type="text" placeholder="Enter url here" name="link" id="link">
+        <input type="text" placeholder="Enter url here starting with http://" name="link" id="link">
         <input type="submit" id="mybtn" />
     </div>
 </form>
@@ -79,7 +79,7 @@ input[type="submit"] {
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
       },
       success: function(data){
-      $('section').html("shortlink:8000/"+data)
+      $('section').html("localhost:8000/"+data)
       }
     });
     });
