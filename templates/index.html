@@ -31,6 +31,15 @@ body{
     border-radius: 2px;
     padding: 20px 40px;
 }
+section{
+    background-color: rgb(250, 250, 250);
+    padding: 35px 10px;
+    border: 1px solid rgb(243, 241, 241) ;
+    border-radius: 2px;
+    padding: 20px 40px;
+    text-align: center;
+}
+
 #link {
     width: 100%;
     padding: 8px 15px;
@@ -40,9 +49,11 @@ body{
 input[type="submit"] {
     background-color: rgb(110, 169, 76);
     color: white;
-    padding: 6px 16px;
+    padding: 16px 16px;
     border:1px solid rgb(243, 241, 241) ;
     border-radius: 5px;
+    margin-left:25% ;
+    width: 50%;
 }
 </style>
 <form action="POST" id="post-form">
@@ -56,6 +67,7 @@ input[type="submit"] {
     </div>
 </form>
 <section></section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).on('submit','#post-form', function(e){
     e.preventDefault();
@@ -66,7 +78,8 @@ input[type="submit"] {
         link:$('#link').val(),
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
       },
-      success: function(){
+      success: function(data){
+      $('section').html("shortlink:8000/"+data)
       }
     });
     });
