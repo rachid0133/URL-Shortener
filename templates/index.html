@@ -31,7 +31,7 @@ body{
     border-radius: 2px;
     padding: 20px 40px;
 }
-input[type="text"] {
+#link {
     width: 100%;
     padding: 8px 15px;
     border:1px solid rgb(243, 241, 241) ;
@@ -45,15 +45,31 @@ input[type="submit"] {
     border-radius: 5px;
 }
 </style>
-<form>
+<form action="POST" id="post-form">
+    {% csrf_token %}
     <div class="main_heding">
         URL Shortener
     </div>
     <div class="main">
-        <input type="text" placeholder="Enter url here" id="link">
+        <input type="text" placeholder="Enter url here" name="link" id="link">
         <input type="submit" id="mybtn" />
     </div>
 </form>
 <section></section>
+<script type="text/javascript">
+    $(document).on('submit','#post-form', function(e){
+    e.preventDefault();
+    $.ajax({
+      type:'POST',
+      url:'/create',
+      data:{
+        link:$('#link').val(),
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success: function(){
+      }
+    });
+    });
+</script>
 </body>
 </html>
